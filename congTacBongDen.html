@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tương tác giữa hai đối tượng công tắc và bóng đèn</title>
+</head>
+<body>
+<button id="on" onclick="turnOn();">Turn ON</button>
+<button id="off" onclick="turnOff();">Turn Off</button>
+<script>
+    var ElectriLamp = function () {
+        this.sang = function () {
+            this.status = true;
+        };
+        this.toi = function () {
+            this.status = false;
+        };
+        this.check = function () {
+            if (this.status) {
+                alert("den sang")
+            } else {
+                alert(" den toi")
+            }
+        }
+    };
+    var SwitchButton = function () {
+        this.connectToLamp = function (lamp) {
+            this.lamp = lamp;
+        };
+        this.bat = function () {
+            this.lamp.sang();
+        };
+        this.tat = function () {
+            this.lamp.toi();
+        }
+    };
+    var lamp = new ElectriLamp();
+    var sb = new SwitchButton();
+    sb.connectToLamp(lamp);
+
+    function turnOn() {
+        sb.bat();
+        sb.lamp.check();
+    }
+
+    function turnOff() {
+        sb.tat();
+        sb.lamp.check();
+    }
+</script>
+</body>
+</html>
